@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./Nav.css";
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 
 function Nav() {
 const [show, handleShow] = useState(false);
