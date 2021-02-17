@@ -77,6 +77,15 @@ useEffect(() => {
 
     return (
         <div className="plansScreen">
+            <br />
+            {subscription && (
+            <p>
+                Renewal date:{" "} 
+                {new Date(
+                    subscription?.current_period_end * 1000
+                ).toLocaleDateString()}
+            </p>
+        )}
             {Object.entries(products).map(([productId, productData]) => {
                 const isCurrentPackage = productData.name
                     ?.toLowerCase()
@@ -85,13 +94,13 @@ useEffect(() => {
                return(
                    <div 
                    key={productId}
-                   className={`${isCurrentPackage && "plansScreen_plan--disabled"} plansScreen_info}`}>
+                   className={`${isCurrentPackage && "plansScreen_plan--disabled"} plansScreen_plan}`}>
                         <div className="plansScreen_info">
                             <h5>{productData.name}</h5>
                             <h6>{productData.description}</h6>
                         </div>
                         <button onClick={() => !isCurrentPackage && loadCheckout(productData.prices.priceId)}>
-                            {!isCurrentPackage ? 'Current Package' : 'Subscribe'}
+                            {isCurrentPackage ? 'Current Package' : 'Subscribe'}
                         </button>
                    </div>
                );
